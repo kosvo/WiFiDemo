@@ -1,5 +1,5 @@
 
-I decide create simple implementation of UI on WPF and setup basic architecture for cross platform application using MVVM pattern.
+I decide to create simple implementation of UI on WPF and setup basic architecture for cross platform application using MVVM pattern.
 New platforms support can be easy added.
 
 Interface IWifiWrapper located in the Core platform independent project.
