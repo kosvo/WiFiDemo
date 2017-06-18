@@ -1,6 +1,5 @@
 using DemoMVVMApplication.Core.Services;
 using MvvmCross.Core.ViewModels;
-using System.Windows.Input;
 
 namespace DemoMVVMApplication.Core.ViewModels
 {
@@ -41,6 +40,7 @@ namespace DemoMVVMApplication.Core.ViewModels
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
+
             wifiWrapper.Initialize();
             base.InitFromBundle(parameters);
         }
@@ -51,7 +51,13 @@ namespace DemoMVVMApplication.Core.ViewModels
             Ssid = wifiWrapper.CurrentState.SSID;
             InterfaceId = wifiWrapper.CurrentState.InterfaceIndex;
             IsInsecure = wifiWrapper.CurrentState.IsInsecure;
-
         }
+
+        protected override void SaveStateToBundle(IMvxBundle bundle)
+        {
+            wifiWrapper.Shutdown();
+            base.SaveStateToBundle(bundle);
+        }
+
     }
 }

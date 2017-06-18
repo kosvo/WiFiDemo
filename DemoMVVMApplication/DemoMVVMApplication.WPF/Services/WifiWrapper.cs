@@ -1,8 +1,6 @@
 ﻿using DemoMVVMApplication.Core.Services;
-using SimpleWifi;
 using SimpleWifi.Win32;
 using SimpleWifi.Win32.Interop;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +10,6 @@ namespace DemoMVVMApplication.WPF.Services
     public class WifiWrapper : IWifiWrapper
     {
         private WlanClient _client;
-        private WifiStatus _connectionStatus;
         private bool _isConnectionStatusSet = false;
         public bool NoWifiAvailable = false;
 
@@ -25,16 +22,17 @@ namespace DemoMVVMApplication.WPF.Services
         public void Initialize()
         {
             _client = new WlanClient();
-           
+
             NoWifiAvailable = _client.NoWifiAvailable;
             if (_client.NoWifiAvailable)
                 return;
 
-            foreach (var inte in _client.Interfaces) {
+            foreach (var inte in _client.Interfaces)
+            {
                 inte.WlanNotification += Inte_WlanNotification;
                 inte.Scan();
             }
-            
+
         }
 
         private void Inte_WlanNotification(WlanNotificationData notifyData)
@@ -90,7 +88,6 @@ namespace DemoMVVMApplication.WPF.Services
         }
         public void Shutdown()
         {
-
             if (_client.NoWifiAvailable)
                 return;
 
@@ -98,7 +95,6 @@ namespace DemoMVVMApplication.WPF.Services
             {
                 wlanIface.Disconnect();
             }
-
         }
     }
 }
