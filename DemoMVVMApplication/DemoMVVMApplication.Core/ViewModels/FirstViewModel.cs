@@ -19,18 +19,21 @@ namespace DemoMVVMApplication.Core.ViewModels
             get { return ssid; }
             set { SetProperty(ref ssid, value); }
         }
+
         private string interfaceName;
         public string InterfaceName
         {
             get { return interfaceName; }
             set { SetProperty(ref interfaceName, value); }
         }
+
         private int interfaceId;
         public int InterfaceId
         {
             get { return interfaceId; }
             set { SetProperty(ref interfaceId, value); }
         }
+
         private bool isInsecure;
         public bool IsInsecure
         {
@@ -40,7 +43,6 @@ namespace DemoMVVMApplication.Core.ViewModels
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
-
             wifiWrapper.Initialize();
             base.InitFromBundle(parameters);
         }
@@ -58,6 +60,5 @@ namespace DemoMVVMApplication.Core.ViewModels
             wifiWrapper.Shutdown();
             base.SaveStateToBundle(bundle);
         }
-
     }
 }

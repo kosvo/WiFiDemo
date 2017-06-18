@@ -10,12 +10,10 @@ namespace DemoMVVMApplication.WPF.Services
     public class WifiWrapper : IWifiWrapper
     {
         private WlanClient _client;
-        private bool _isConnectionStatusSet = false;
         public bool NoWifiAvailable = false;
 
         private WifiState currentState;
         public WifiState CurrentState => currentState;
-
 
         public event WifiNotification WifiStateChanged;
 
@@ -59,7 +57,6 @@ namespace DemoMVVMApplication.WPF.Services
             }
 
             WifiStateChanged.Invoke(this.CurrentState);
-
         }
 
         private List<WlanAvailableNetwork> GetAccessPoints()
@@ -86,6 +83,7 @@ namespace DemoMVVMApplication.WPF.Services
 
             return accessPoints;
         }
+
         public void Shutdown()
         {
             if (_client.NoWifiAvailable)
